@@ -1,11 +1,11 @@
 name: 'sign in Bot'
  
 on:
-  watch:
-    types: started
+#  watch:
+#    types: started
   schedule:
   # 定时任务，在每天的5点推送登录信息到钉钉
-    - cron: '0 16 * * *'
+    - cron: '0 16 1/2 * *'
 
 jobs:
   bot:
