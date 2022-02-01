@@ -3,9 +3,6 @@ name: 'sign in Bot'
 on:
   watch:
     types: started
-  schedule:
-  # 定时任务，在每天的5点推送登录信息到钉钉
-    - cron: '0 16 * * *'
 
 jobs:
   bot:
@@ -35,6 +32,16 @@ jobs:
        python -m pip install --upgrade pip
 
        pip install requests
-    - name: Update paper list
+    - name: execute Python
       run: |
-        python qd.py ${{ secrets.username }} ${{ secrets.password }} ${{ secrets.answer }} ${{ secrets.dingtalk_token }} 
+       python change.py
+    - name: Commit
+      run: |
+        git config --global user.name "post_bot"
+        git config --global user.email "sh3d0ww01f@gmail.com"
+        git add .
+        git commit -m "change!!!"
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
